@@ -1,0 +1,406 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Light theme is the default */
+:root {
+  /* Light Theme Variables */
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-tertiary: #efefef;
+  --border-color: #e0e0e0;
+  
+  /* Shared Variables */
+  --primary: 217 90% 48%;
+  --primary-foreground: 211 100% 99%;
+  --secondary: 168 85% 32%;
+  --secondary-foreground: 24 9.8% 10%;
+  --accent: 279 68% 47%;
+  --accent-foreground: 24 9.8% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 20 14.3% 4.1%;
+  --radius: 0.5rem;
+  --highlight: 193 91% 60%;
+  --chart-1: 217 90% 48%;
+  --chart-2: 168 85% 32%;
+  --chart-3: 279 68% 47%;
+  --chart-4: 193 91% 60%;
+  --chart-5: 43 96% 56%;
+  
+  /* CSS Variables for shadcn */
+  --background: 0 0% 100%;
+  --foreground: 20 14.3% 4.1%;
+  --muted: 60 4.8% 95.9%;
+  --muted-foreground: 25 5.3% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 14.3% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 14.3% 4.1%;
+  --border: 20 5.9% 90%;
+  --input: 20 5.9% 90%;
+}
+
+/* Hacker Theme Overrides */
+[data-theme="dark"] {
+  /* Hacker Terminal Theme Variables */
+  --text-primary: #00ff00;  /* Matrix Green */
+  --text-secondary: rgba(0, 255, 0, 0.8);
+  --bg-primary: #000000;    /* Pure Black */
+  --bg-secondary: #000000;  /* Pure Black */
+  --bg-tertiary: #000000;   /* Pure Black */
+  --border-color: #00ff00;  /* Matrix Green */
+  
+  /* Accent Colors - Hacker Theme */
+  --primary: 120 100% 50%;    /* Matrix Green */
+  --primary-foreground: 0 0% 0%;
+  --secondary: 120 100% 50%;  /* Matrix Green */
+  --secondary-foreground: 0 0% 0%;
+  --accent: 120 100% 50%;     /* Matrix Green */
+  --accent-foreground: 0 0% 0%;
+  --highlight: 120 100% 50%;  /* Matrix Green */
+
+  /* CSS Variables for shadcn */
+  --background: 0 0% 0%;      /* Pure Black */
+  --foreground: 120 100% 50%; /* Matrix Green */
+  
+  /* Matrix Rain Effect */
+  background-image: 
+    linear-gradient(0deg, rgba(0, 255, 0, 0.03) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(0, 255, 0, 0.03) 2px, transparent 2px),
+    linear-gradient(rgba(0, 255, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 0, 0.04) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  --foreground: 120 100% 50%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 120 100% 40%;
+  --popover: 0 0% 4%;
+  --popover-foreground: 120 100% 50%;
+  --card: 0 0% 6%;
+  --card-foreground: 120 100% 50%;
+  --border: 120 100% 50%;
+  --input: 0 0% 15%;
+  
+  /* Chart colors - Cyber/Hacker palette */
+  --chart-1: 120 100% 50%;  /* Terminal Green */
+  --chart-2: 180 100% 50%;  /* Cyan */
+  --chart-3: 300 100% 50%;  /* Magenta */
+  --chart-4: 150 100% 70%;  /* Light Green */
+  --chart-5: 210 100% 50%;  /* Blue */
+}
+
+/* Helper classes for direct use */
+.light-theme {
+  color-scheme: light;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-tertiary: #efefef;
+  --border-color: #e0e0e0;
+}
+
+.dark-theme {
+  color-scheme: dark;
+  /* Hacker Terminal Theme Variables */
+  --text-primary: #00ff00;  /* Terminal Green */
+  --text-secondary: rgba(0, 255, 0, 0.7);
+  --bg-primary: #0a0a0a;    /* Deep Black */
+  --bg-secondary: #050505;  /* Darker Black */
+  --bg-tertiary: #101010;   /* Slightly Lighter Black */
+  --border-color: #00ff00;  /* Terminal Green */
+  
+  /* Accent Colors - Cyber/Hacker Theme */
+  --primary: 120 100% 50%;    /* Terminal Green */
+  --primary-foreground: 0 0% 0%;
+  --secondary: 180 100% 50%;  /* Cyan */
+  --secondary-foreground: 0 0% 0%;
+  --accent: 300 100% 50%;     /* Magenta */
+  --accent-foreground: 0 0% 0%;
+  --highlight: 150 100% 50%;  /* Lighter Green */
+  
+  /* Chart colors - Cyber/Hacker palette */
+  --chart-1: 120 100% 50%;  /* Terminal Green */
+  --chart-2: 180 100% 50%;  /* Cyan */
+  --chart-3: 300 100% 50%;  /* Magenta */
+  --chart-4: 150 100% 70%;  /* Light Green */
+  --chart-5: 210 100% 50%;  /* Blue */
+}
+
+@layer base {
+  * {
+    @apply border-border transition-colors duration-200;
+  }
+
+  body {
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    @apply font-sans antialiased;
+  }
+  
+  /* Matrix background pattern for dark theme */
+  [data-theme="dark"] body {
+    background-image: 
+      radial-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 0),
+      linear-gradient(rgba(0, 255, 0, 0.05) 1px, transparent 0);
+    background-size: 20px 20px, 20px 20px;
+    background-position: 0 0, 10px 10px;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: var(--bg-secondary);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--bg-tertiary);
+    @apply rounded;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-opacity-80;
+  }
+}
+
+@keyframes matrix-scan {
+  0% { transform: translateY(-100%); opacity: 0.7; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+@keyframes text-glow {
+  0%, 100% { text-shadow: 0 0 10px rgba(0, 255, 0, 0.7); }
+  50% { text-shadow: 0 0 20px rgba(0, 255, 0, 0.9); }
+}
+
+[data-theme="dark"] * {
+  text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+}
+
+[data-theme="dark"] button {
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+[data-theme="dark"] button:hover {
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea {
+  background: rgba(0, 20, 0, 0.3) !important;
+  border-color: rgba(0, 255, 0, 0.3) !important;
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus {
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+  border-color: rgba(0, 255, 0, 0.5) !important;
+}
+
+@layer components {
+  .bg-gradient-animate {
+    @apply bg-gradient-to-tr from-primary via-secondary to-accent bg-[length:400%_400%] animate-gradient;
+  }
+
+  .reveal {
+    @apply opacity-0 translate-y-5 transition-all duration-500 ease-out;
+  }
+
+  .reveal.active {
+    @apply opacity-100 translate-y-0;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce 3s infinite;
+  }
+
+  .animate-gradient {
+    animation: gradient 8s ease infinite;
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .skill-bar {
+    @apply relative h-1.5 rounded overflow-hidden;
+  }
+
+  .skill-progress {
+    @apply absolute top-0 left-0 h-full rounded transition-all duration-1000 ease-in-out w-0;
+  }
+
+  .shadow-glow-sm {
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .shadow-glow-sm:hover {
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+  }
+  
+  .shadow-glow-md {
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .shadow-glow-md:hover {
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+  }
+  
+  /* Matrix-style border effects */
+  .border-matrix {
+    border: 2px solid #00ff00;
+  }
+  
+  .border-matrix-glow {
+    border: 2px solid #00ff00;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  }
+  
+  /* CRT screen effect */
+  .crt-effect {
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .crt-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+    z-index: 10;
+  }
+  
+  /* Terminal cursor effect */
+  .terminal-cursor {
+    position: relative;
+  }
+  
+  .terminal-cursor::after {
+    content: '|';
+    position: absolute;
+    opacity: 1;
+    animation: cursor-blink 1s infinite step-end;
+    margin-left: 2px;
+    color: #00ff00;
+  }
+  
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .project-card:hover .project-overlay {
+    @apply opacity-100;
+  }
+
+  .project-card:hover img {
+    @apply scale-105;
+  }
+  
+  /* Matrix digital rain effect */
+  .matrix-rain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+  
+  .matrix-rain::before {
+    content: "01";
+    position: absolute;
+    color: #00ff00;
+    font-size: 20px;
+    width: 100%;
+    animation: matrix-rain 2s linear infinite;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+  }
+  
+  @keyframes matrix-rain {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+  
+  /* Interactive hover effects */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Theme transition effect for entire page */
+  body * {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+}
